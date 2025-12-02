@@ -1,0 +1,28 @@
+<odoo>
+  <record id="view_order_form_inherit_total_cost" model="ir.ui.view">
+    <field name="name">sale.order.form.total.cost</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='tax_totals']" position="after">
+        <field name="total_cost" readonly="1"/>
+      </xpath>
+    </field>
+  </record>
+  <!--vista alternativa-->
+  <record id="view_order_form_inherit_total_cost_below_margin" model="ir.ui.view">
+    <field name="name">sale.order.form.total.cost.below.margin</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="priority" eval="16"/>
+    <field name="arch" type="xml">
+      <xpath expr="//span[field[@name='margin_percent']]" position="after">
+        <div class="text-nowrap" groups="base.group_user">
+          <label for="total_cost"/>
+          <field name="total_cost" class="oe_inline" readonly="1"/>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
